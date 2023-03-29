@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    Topics List
+    <a href="#" class="btn btn-primary link-to-page">
+      Add
+    </a>
+  </h1>
+
+  <br>
+
+  {% if topic_list %}
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Update</th>
+        <th>Delete</th>
+      </tr>
+
+      {% for topic in topic_list %}
+        <tr>
+          <td>
+              {{ topic.id }}
+          </td>
+          <td>
+              {{ topic.name }}
+          </td>
+          <td>
+              <a href="#">
+                Update
+              </a>
+            </td>
+            <td>
+              <a style="color: red"
+                href="#">
+                Delete
+              </a>
+            </td>
+        </tr>
+      {% endfor %}
+    </table>
+
+  {% else %}
+      <p>There are no topics here.</p>
+  {% endif %}
+{% endblock %}
