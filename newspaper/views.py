@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views import generic
 
 from .models import Topic, Redactor, Newspaper
 
@@ -19,3 +20,8 @@ def index(request):
     }
 
     return render(request, "newspaper/index.html", context=context)
+
+
+class NewspaperListView(generic.ListView):
+    model = Newspaper
+    paginate_by = 5
