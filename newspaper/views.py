@@ -1,3 +1,5 @@
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
@@ -5,6 +7,7 @@ from django.views import generic
 from .models import Topic, Redactor, Newspaper
 
 
+@login_required
 def index(request):
     num_redactors = Redactor.objects.count()
     num_newspapers = Newspaper.objects.count()
@@ -44,6 +47,6 @@ class RedactorDetailView(generic.DetailView):
     queryset = Redactor.objects.all().prefetch_related("newspapers__publisher")
 
 
-class TopicListView(generic.ListView):
+class TopicListView(LoginRequiredMixin, generic.ListView):
     model = Topic
     paginate_by = 5
