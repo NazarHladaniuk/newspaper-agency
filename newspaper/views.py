@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views import generic
 
 from .models import Topic, Redactor, Newspaper
@@ -25,6 +26,10 @@ def index(request):
 class NewspaperListView(generic.ListView):
     model = Newspaper
     paginate_by = 5
+
+
+class NewspaperDetailView(generic.DetailView):
+    model = Newspaper
 
 
 class RedactorListView(generic.ListView):

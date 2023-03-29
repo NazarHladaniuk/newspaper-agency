@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>
+    <strong>
+      {{ newspaper.title }}
+    </strong>
+  </h2>
+  <p>Topic: ({{ newspaper.topic.name}})</p>
+  <h2>
+    Publishers
+
+    {% if newspaper in user.newspaper.all %}
+      <a href="#" class="btn btn-danger link-to-page">
+        Remove as co-author
+      </a>
+    {% else %}
+      <a href="#" class="btn btn-success link-to-page">
+        Add as co-author
+      </a>
+    {% endif %}
+
+  </h2>
+  <hr>
+  <ul>
+    {% for publisher in newspaper.publisher.all %}
+      <li>{{ publisher.username }} ({{ publisher.first_name }} {{ publisher.last_name }})</li>
+    {% endfor %}
+  </ul>
+
+  <a href="#" class="btn btn-danger link-to-page">
+    Delete
+  </a>
+
+  <a href="#" class="btn btn-primary link-to-page">
+    Update
+  </a>
+{% endblock %}

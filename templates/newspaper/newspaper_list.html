@@ -17,7 +17,7 @@
       {% for news in newspaper_list %}
         <li>
           <a href="#">{{ newspaper.id }}</a>
-          {{ news.title }} - ({{ news.topic }})
+          #{{ news.id }} {{ news.title }} - ({{ news.topic }})
         </li>
       {% endfor %}
     </ul>
