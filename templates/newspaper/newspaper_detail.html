@@ -24,7 +24,10 @@
   <hr>
   <ul>
     {% for publisher in newspaper.publisher.all %}
-      <li>{{ publisher.username }} ({{ publisher.first_name }} {{ publisher.last_name }})</li>
+      <p class="text-muted"><strong>Id:</strong> {{ publisher.id }}</p>
+      <li><strong>Username: </strong> {{ publisher.username }} ({{ publisher.first_name }} {{ publisher.last_name }})
+        - {{ publisher.years_of_experience }} experience years</li>
+      <br>
     {% endfor %}
   </ul>
 
