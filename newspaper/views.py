@@ -35,6 +35,12 @@ class NewspaperDetailView(generic.DetailView):
     model = Newspaper
 
 
+class NewspaperCreateView(generic.CreateView):
+    model = Newspaper
+    fields = "__all__"
+    success_url = reverse_lazy("newspaper:newspaper-list")
+
+
 class RedactorListView(generic.ListView):
     model = Redactor
     context_object_name = "redactor_list"
