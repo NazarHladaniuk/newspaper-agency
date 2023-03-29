@@ -8,6 +8,12 @@
   </h2>
   <p>Topic: ({{ newspaper.topic.name}})</p>
   <h2>
+    Context:
+  </h2>
+  <p>
+    {{ newspaper.content }}
+  </p>
+  <h2>
     Publishers
 
     {% if newspaper in user.newspaper.all %}

@@ -16,10 +16,11 @@
     <ul>
       {% for news in newspaper_list %}
         <li>
-          <a href="#">{{ newspaper.id }}</a>
-          #{{ news.id }} {{ news.title }} - ({{ news.topic }})
+          <a href="{% url "newspaper:newspaper-detail" pk=news.id %}">{{ news.title }}</a>
+          ({{ news.topic.name }})
         </li>
       {% endfor %}
+    </ul>
     </ul>
   {% else %}
     <p>There are no news in newspaper</p>
