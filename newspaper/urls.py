@@ -3,6 +3,7 @@ from django.urls import path
 from newspaper.views import index
 
 urlpatterns = [
-    path("", index),
-    path("hello/", index),
+    path("", index, name="index"),
 ]
+
+app_name = "newspaper"
