@@ -25,3 +25,11 @@ def index(request):
 class NewspaperListView(generic.ListView):
     model = Newspaper
     paginate_by = 5
+
+
+class RedactorListView(generic.ListView):
+    model = Redactor
+    context_object_name = "redactor_list"
+    template_name = "newspaper/redactor_list.html"
+    paginate_by = 5
+

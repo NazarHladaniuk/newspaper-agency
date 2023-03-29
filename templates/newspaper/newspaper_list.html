@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    <strong>
+      Newspaper list
+    </strong>
+    <a href="#" class="btn btn-primary link-to-page">
+      Add
+    </a>
+  </h1>
+
+    <br>
+
+  {% if newspaper_list %}
+    <ul>
+      {% for news in newspaper_list %}
+        <li>
+          <a href="#">{{ newspaper.id }}</a>
+          {{ news.title }} - ({{ news.topic }})
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>There are no news in newspaper</p>
+  {% endif %}
+{% endblock %}
