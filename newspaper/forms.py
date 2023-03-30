@@ -32,4 +32,3 @@ def validate_years_of_experience(years_of_experience):
     if years_of_experience < 0:
         raise ValidationError("Years of experience cannot be negative")
     return years_of_experience
-
