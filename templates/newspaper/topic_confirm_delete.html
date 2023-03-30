@@ -6,9 +6,12 @@
     this also deletes all related news!
     Are you sure you want to delete?
   </p>
-  <form action="" method="post">
+  <form action="" method="POST">
     {% csrf_token %}
-
-    <input type="submit" value="Yes" class="btn btn-danger">
+    <input type="submit" value="Yes, delete" class="btn btn-danger" />
+    <a href="{% url 'newspaper:topic-list'%}"><label>
+      <input value="No, cancel" class="btn btn-success" />
+    </label></a>
   </form>
 {% endblock %}
+
