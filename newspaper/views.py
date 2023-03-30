@@ -35,7 +35,6 @@ def index(request):
 class NewspaperListView(generic.ListView):
     model = Newspaper
     paginate_by = 5
-    queryset = Newspaper.objects.all().select_related("topic")
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(NewspaperListView, self).get_context_data(**kwargs)
@@ -49,11 +48,16 @@ class NewspaperListView(generic.ListView):
         return context
 
     def get_queryset(self):
-        title = self.request.GET.get("title")
+        queryset = Newspaper.objects.all().select_related("topic")
 
-        if title:
-            return self.queryset.filter(title__icontains=title)
-        return self.queryset
+        form = NewspaperSearchForm(self.request.GET)
+
+        if form.is_valid():
+            return queryset.filter(
+                title__icontains=form.cleaned_data["title"]
+            )
+
+        return queryset
 
 
 class NewspaperDetailView(generic.DetailView):
