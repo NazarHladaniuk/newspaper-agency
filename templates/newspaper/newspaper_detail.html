@@ -16,13 +16,13 @@
   <h2>
     Publishers
 
-    {% if newspaper in user.newspaper.all %}
-      <a href="#" class="btn btn-danger link-to-page">
-        Remove as co-author
+    {% if newspaper in user.newspapers.all %}
+      <a href="{% url 'newspaper:toggle-newspaper-assign' pk=newspaper.id %}" class="btn btn-danger link-to-page">
+        Delete me from this news
       </a>
     {% else %}
-      <a href="#" class="btn btn-success link-to-page">
-        Add as co-author
+      <a href="{% url 'newspaper:toggle-newspaper-assign' pk=newspaper.id %}" class="btn btn-success link-to-page">
+        Assign me to this news
       </a>
     {% endif %}
 
