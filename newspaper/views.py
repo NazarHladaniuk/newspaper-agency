@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from .forms import RedactorCreationForm
+from .forms import RedactorCreationForm, RedactorInfoUpdateForm
 from .models import Topic, Redactor, Newspaper
 
 
@@ -72,7 +72,7 @@ class RedactorCreateView(LoginRequiredMixin, generic.CreateView):
 
 class RedactorUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Redactor
-    fields = "__all__"
+    form_class = RedactorInfoUpdateForm
     success_url = reverse_lazy("newspaper:redactor-list")
 
 
