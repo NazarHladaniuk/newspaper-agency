@@ -51,7 +51,7 @@ class NewspaperSearchForm(forms.Form):
         max_length=255,
         required=False,
         label="",
-        widget=forms.TextInput(attrs={"placeholder": "Search by title"})
+        widget=forms.TextInput(attrs={"placeholder": "Search by title"}),
     )
 
 
@@ -60,7 +60,7 @@ class TopicSearchForm(forms.Form):
         max_length=255,
         required=False,
         label="",
-        widget=forms.TextInput(attrs={"placeholder": "Search by name"})
+        widget=forms.TextInput(attrs={"placeholder": "Search by name"}),
     )
 
 
@@ -69,6 +69,5 @@ class RedactorSearchForm(forms.Form):
         max_length=255,
         required=False,
         label="",
-        widget=forms.TextInput(attrs={"placeholder": "Search by username"})
+        widget=forms.TextInput(attrs={"placeholder": "Search by username"}),
     )
-

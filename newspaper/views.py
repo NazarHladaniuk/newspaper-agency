@@ -11,7 +11,7 @@ from .forms import (
     NewspaperForm,
     NewspaperSearchForm,
     TopicSearchForm,
-    RedactorSearchForm
+    RedactorSearchForm,
 )
 from .models import Topic, Redactor, Newspaper
 
@@ -44,9 +44,7 @@ class NewspaperListView(LoginRequiredMixin, generic.ListView):
 
         title = self.request.GET.get("title", "")
 
-        context["search_form"] = NewspaperSearchForm(initial={
-            "title": title
-        })
+        context["search_form"] = NewspaperSearchForm(initial={"title": title})
 
         return context
 
@@ -56,9 +54,7 @@ class NewspaperListView(LoginRequiredMixin, generic.ListView):
         form = NewspaperSearchForm(self.request.GET)
 
         if form.is_valid():
-            return queryset.filter(
-                title__icontains=form.cleaned_data["title"]
-            )
+            return queryset.filter(title__icontains=form.cleaned_data["title"])
 
         return queryset
 
@@ -95,9 +91,7 @@ class RedactorListView(LoginRequiredMixin, generic.ListView):
 
         username = self.request.GET.get("username", "")
 
-        context["search_form"] = RedactorSearchForm(initial={
-            "username": username
-        })
+        context["search_form"] = RedactorSearchForm(initial={"username": username})
         return context
 
     def get_queryset(self):
@@ -106,9 +100,7 @@ class RedactorListView(LoginRequiredMixin, generic.ListView):
         form = RedactorSearchForm(self.request.GET)
 
         if form.is_valid():
-            return queryset.filter(
-                username__icontains=form.cleaned_data["username"]
-            )
+            return queryset.filter(username__icontains=form.cleaned_data["username"])
         return queryset
 
 
@@ -142,9 +134,7 @@ class TopicListView(LoginRequiredMixin, generic.ListView):
 
         name = self.request.GET.get("name", "")
 
-        context["search_form"] = TopicSearchForm(initial={
-            "name": name
-        })
+        context["search_form"] = TopicSearchForm(initial={"name": name})
         return context
 
     def get_queryset(self):
@@ -153,9 +143,7 @@ class TopicListView(LoginRequiredMixin, generic.ListView):
         form = TopicSearchForm(self.request.GET)
 
         if form.is_valid():
-            return queryset.filter(
-                name__icontains=form.cleaned_data["name"]
-            )
+            return queryset.filter(name__icontains=form.cleaned_data["name"])
         return queryset
 
 
@@ -179,9 +167,7 @@ class TopicDeleteView(LoginRequiredMixin, generic.DeleteView):
 @login_required
 def toggle_assign_to_newspapers(request, pk):
     redactor = Redactor.objects.get(id=request.user.id)
-    if (
-        Newspaper.objects.get(id=pk) in redactor.newspapers.all()
-    ):
+    if Newspaper.objects.get(id=pk) in redactor.newspapers.all():
         redactor.newspapers.remove(pk)
     else:
         redactor.newspapers.add(pk)
