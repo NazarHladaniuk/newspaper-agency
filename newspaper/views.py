@@ -35,7 +35,7 @@ def index(request):
     return render(request, "newspaper/index.html", context=context)
 
 
-class NewspaperListView(generic.ListView):
+class NewspaperListView(LoginRequiredMixin, generic.ListView):
     model = Newspaper
     paginate_by = 5
 
@@ -63,11 +63,11 @@ class NewspaperListView(generic.ListView):
         return queryset
 
 
-class NewspaperDetailView(generic.DetailView):
+class NewspaperDetailView(LoginRequiredMixin, generic.DetailView):
     model = Newspaper
 
 
-class NewspaperCreateView(generic.CreateView):
+class NewspaperCreateView(LoginRequiredMixin, generic.CreateView):
     model = Newspaper
     form_class = NewspaperForm
     success_url = reverse_lazy("newspaper:newspaper-list")
@@ -84,7 +84,7 @@ class NewspaperDeleteView(LoginRequiredMixin, generic.DeleteView):
     success_url = reverse_lazy("newspaper:newspaper-list")
 
 
-class RedactorListView(generic.ListView):
+class RedactorListView(LoginRequiredMixin, generic.ListView):
     model = Redactor
     context_object_name = "redactor_list"
     template_name = "newspaper/redactor_list.html"
@@ -112,7 +112,7 @@ class RedactorListView(generic.ListView):
         return queryset
 
 
-class RedactorDetailView(generic.DetailView):
+class RedactorDetailView(LoginRequiredMixin, generic.DetailView):
     model = Redactor
     queryset = Redactor.objects.all().prefetch_related("newspapers__publisher")
 
