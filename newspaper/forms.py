@@ -44,3 +44,12 @@ def validate_years_of_experience(years_of_experience):
     if years_of_experience < 0:
         raise ValidationError("Years of experience cannot be negative")
     return years_of_experience
+
+
+class NewspaperSearchForm(forms.Form):
+    title = forms.CharField(
+        max_length=255,
+        required=False,
+        label="",
+        widget=forms.TextInput(attrs={"placeholder": "Search by car title"})
+    )
