@@ -53,6 +53,12 @@ class RedactorDetailView(generic.DetailView):
     queryset = Redactor.objects.all().prefetch_related("newspapers__publisher")
 
 
+class RedactorCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Redactor
+    fields = "__all__"
+    success_url = reverse_lazy("newspaper:redactor-list-list")
+
+
 class TopicListView(LoginRequiredMixin, generic.ListView):
     model = Topic
     paginate_by = 5
