@@ -52,9 +52,8 @@ class NewspaperListView(generic.ListView):
         title = self.request.GET.get("title")
 
         if title:
-            return Newspaper.objects.filter(title__icontains=title)
-        else:
-            return Newspaper.objects.all()
+            return self.queryset.filter(title__icontains=title)
+        return self.queryset
 
 
 class NewspaperDetailView(generic.DetailView):
