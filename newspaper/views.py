@@ -8,7 +8,9 @@ from .forms import (
     RedactorCreationForm,
     RedactorInfoUpdateForm,
     NewspaperForm,
-    NewspaperSearchForm, TopicSearchForm
+    NewspaperSearchForm,
+    TopicSearchForm,
+    RedactorSearchForm
 )
 from .models import Topic, Redactor, Newspaper
 
@@ -86,6 +88,27 @@ class RedactorListView(generic.ListView):
     context_object_name = "redactor_list"
     template_name = "newspaper/redactor_list.html"
     paginate_by = 5
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(RedactorListView, self).get_context_data(**kwargs)
+
+        username = self.request.GET.get("username", "")
+
+        context["search_form"] = RedactorSearchForm(initial={
+            "username": username
+        })
+        return context
+
+    def get_queryset(self):
+        queryset = Redactor.objects.all()
+
+        form = RedactorSearchForm(self.request.GET)
+
+        if form.is_valid():
+            return queryset.filter(
+                username__icontains=form.cleaned_data["username"]
+            )
+        return queryset
 
 
 class RedactorDetailView(generic.DetailView):
