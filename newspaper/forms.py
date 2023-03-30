@@ -1,8 +1,20 @@
+from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.core.exceptions import ValidationError
 
-from newspaper.models import Redactor
+from newspaper.models import Redactor, Newspaper
+
+
+class NewspaperForm(forms.ModelForm):
+    publisher = forms.ModelMultipleChoiceField(
+        queryset=get_user_model().objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+    )
+
+    class Meta:
+        model = Newspaper
+        fields = "__all__"
 
 
 class RedactorCreationForm(UserCreationForm):
