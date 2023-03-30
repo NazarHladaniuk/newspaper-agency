@@ -41,7 +41,7 @@
     Delete
   </a>
 
-  <a href="#" class="btn btn-primary link-to-page">
+  <a href="{% url 'newspaper:newspaper-update' pk=newspaper.id %}" class="btn btn-primary link-to-page">
     Update
   </a>
 {% endblock %}

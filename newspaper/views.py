@@ -42,6 +42,12 @@ class NewspaperCreateView(generic.CreateView):
     success_url = reverse_lazy("newspaper:newspaper-list")
 
 
+class NewspaperUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Newspaper
+    fields = "__all__"
+    success_url = reverse_lazy("newspaper:newspaper-list")
+
+
 class RedactorListView(generic.ListView):
     model = Redactor
     context_object_name = "redactor_list"
