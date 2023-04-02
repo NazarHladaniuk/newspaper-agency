@@ -4,7 +4,7 @@ Django project for managing news and authors in agency
 
 ## Check it
 
-[Project deployed to Render](PASTE_LINK_HERE)
+[Project deployed to Render](https://nazar-newspaper-agency.onrender.com/)
 
 ## Account for testing:
 ```shell
