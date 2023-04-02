@@ -16,7 +16,7 @@ from .forms import (
 from .models import Topic, Redactor, Newspaper
 
 
-@login_required
+
 def index(request):
     num_redactors = Redactor.objects.count()
     num_newspapers = Newspaper.objects.count()

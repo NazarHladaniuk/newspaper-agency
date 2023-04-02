@@ -1,15 +1,17 @@
-{% extends "base.html" %}
+{% extends "base-presentation.html" %}
 
 {% block content %}
-  <h1>Delete?</h1>
-  <p>
-    Are you sure you want to delete ({{ newspaper.title }})?
-  </p>
-  <form action="" method="POST">
-    {% csrf_token %}
-    <input type="submit" value="Yes, delete" class="btn btn-danger" />
-    <a href="{% url 'newspaper:newspaper-detail' pk=newspaper.id %}"><label>
-      <input value="No, cancel" class="btn btn-success" />
-    </label></a>
-  </form>
+  <div class="container py-2">
+    <h1>Delete?</h1>
+    <p>
+      Are you sure you want to delete ({{ newspaper.title }})?
+    </p>
+    <form action="" method="POST">
+      {% csrf_token %}
+      <input type="submit" value="Yes, delete" class="btn btn-danger" />
+      <a href="{% url 'newspaper:newspaper-detail' pk=newspaper.id %}"><label>
+        <input value="No, cancel" class="btn btn-success" />
+      </label></a>
+    </form>
+  </div>
 {% endblock %}

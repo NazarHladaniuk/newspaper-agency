@@ -1,20 +1,33 @@
-{% extends "base.html" %}
+{% extends "base-presentation.html" %}
 {% load crispy_forms_filters %}
 
 {% block content %}
-  <h1>
-    <strong>
-      Newspaper List
-    </strong>
-    <a href="{% url "newspaper:newspaper-create" %}" class="btn btn-primary link-to-page">
-      Add
-    </a>
-  </h1>
+  <div class="container py-2">
+    <h1 class="d-flex justify-content-between align-items-center">
+      Newspapers List
+      <a href="{% url 'newspaper:newspaper-create' %}" class="btn btn-info link-to-page btn-round mb-0 me-1">
+        Add
+      </a>
+    </h1>
 
-  <form action="" method="get" class="form-inline">
-    {{ search_form|crispy }}
-    <input type="submit" value="🔎" class="btn btn-secondary">
-  </form>
+    <section class="py-1">
+      <div class="container">
+        <div class="row justify-content-between py-3">
+          <div class="col-lg-4 mx-auto">
+            <form action="" method="get" class="form-inline">
+              <div class="input-group">
+                {{ search_form|crispy }}
+                <div class="input-group-append">
+                  <button type="submit" class="btn btn-secondary">
+                    <i class="fa fa-search"></i>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
 
   <br>
 
@@ -31,4 +44,5 @@
   {% else %}
     <p>There are no news in newspaper</p>
   {% endif %}
+  </div>
 {% endblock %}

@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+ASSETS_ROOT = "/static/assets"
 
 # Application definition
 
@@ -64,6 +65,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "newspaper.context_processors.cfg_assets_root",
             ],
         },
     },

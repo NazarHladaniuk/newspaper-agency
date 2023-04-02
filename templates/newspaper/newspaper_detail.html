@@ -1,47 +1,49 @@
-{% extends "base.html" %}
+{% extends "base-presentation.html" %}
 
 {% block content %}
-  <h2>
-    <strong>
-      {{ newspaper.title }}
-    </strong>
-  </h2>
-  <p>Topic: ({{ newspaper.topic.name}})</p>
-  <h2>
-    Context:
-  </h2>
-  <p>
-    {{ newspaper.content }}
-  </p>
-  <h2>
-    Publishers
+  <div class="container py-2">
+    <h2>
+      <strong>
+        {{ newspaper.title }}
+      </strong>
+    </h2>
+    <p><strong>Topic:</strong> {{ newspaper.topic.name}}</p>
+    <h2>
+      Context:
+    </h2>
+    <p>
+      {{ newspaper.content }}
+    </p>
+    <h3>
+      Publishers
 
-    {% if newspaper in user.newspapers.all %}
-      <a href="{% url 'newspaper:toggle-newspaper-assign' pk=newspaper.id %}" class="btn btn-danger link-to-page">
-        Delete me from this news
-      </a>
-    {% else %}
-      <a href="{% url 'newspaper:toggle-newspaper-assign' pk=newspaper.id %}" class="btn btn-success link-to-page">
-        Assign me to this news
-      </a>
-    {% endif %}
+      {% if newspaper in user.newspapers.all %}
+        <a href="{% url 'newspaper:toggle-newspaper-assign' pk=newspaper.id %}" class="btn btn-danger link-to-page mb-0 me-1">
+          Delete me from this news
+        </a>
+      {% else %}
+        <a href="{% url 'newspaper:toggle-newspaper-assign' pk=newspaper.id %}" class="btn d-inline-flex btn-success link-to-page mb-0 me-1">
+          Assign me to this news
+        </a>
+      {% endif %}
 
-  </h2>
-  <hr>
-  <ul>
-    {% for publisher in newspaper.publisher.all %}
-      <p class="text-muted"><strong>Id:</strong> {{ publisher.id }}</p>
-      <li><strong>Username: </strong> {{ publisher.username }} ({{ publisher.first_name }} {{ publisher.last_name }})
-        - {{ publisher.years_of_experience }} experience years</li>
-      <br>
-    {% endfor %}
-  </ul>
+    </h3>
+    <hr>
+    <ul>
+      {% for publisher in newspaper.publisher.all %}
+        <p class="text-muted"><strong>Id:</strong> {{ publisher.id }}</p>
+        <li><strong>Username: </strong> {{ publisher.username }} ({{ publisher.first_name }} {{ publisher.last_name }})
+          - {{ publisher.years_of_experience }} experience years</li>
+        <br>
+      {% endfor %}
+    </ul>
 
-  <a href="{% url 'newspaper:newspaper-delete' pk=newspaper.id %}" class="btn btn-danger link-to-page">
-    Delete
-  </a>
+    <a href="{% url 'newspaper:newspaper-delete' pk=newspaper.id %}" class="btn btn-danger link-to-page">
+      Delete
+    </a>
 
-  <a href="{% url 'newspaper:newspaper-update' pk=newspaper.id %}" class="btn btn-primary link-to-page">
-    Update
-  </a>
+    <a href="{% url 'newspaper:newspaper-update' pk=newspaper.id %}" class="btn btn-info link-to-page">
+      Update
+    </a>
+  </div>
 {% endblock %}

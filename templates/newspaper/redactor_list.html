@@ -1,41 +1,57 @@
-{% extends "base.html" %}
+{% extends "base-presentation.html" %}
 {% load crispy_forms_filters %}
 
 {% block content %}
-  <h1>
-    Redactors List
-    <a href="{% url 'newspaper:redactor-create' %}" class="btn btn-primary link-to-page">
-      Add
-    </a>
-  </h1>
+  <div class="container py-2">
+    <h1 class="d-flex justify-content-between align-items-center">
+      Redactors List
+      <a href="{% url 'newspaper:redactor-create' %}" class="btn btn-info link-to-page btn-round mb-0 me-1">
+        Add
+      </a>
+    </h1>
 
-  <form action="" method="get" class="form-inline">
-    {{ search_form|crispy }}
-    <input type="submit" value="🔎" class="btn btn-secondary">
-  </form>
+    <section class="py-1">
+      <div class="container">
+        <div class="row justify-content-between py-3">
+          <div class="col-lg-4 mx-auto">
+            <form action="" method="get" class="form-inline">
+              <div class="input-group">
+                {{ search_form|crispy }}
+                <div class="input-group-append">
+                  <button type="submit" class="btn btn-secondary">
+                    <i class="fa fa-search"></i>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <br>
-  {% if redactor_list %}
-  <table class="table">
-    <tr>
-      <th>ID</th>
-      <th>Username</th>
-      <th>First name</th>
-      <th>Last name</th>
-      <th>Experience years</th>
-    </tr>
-  {% for redactor in redactor_list %}
-    <tr>
-      <td>{{ redactor.id }}</td>
-      <td><a href="{{ redactor.get_absolute_url }}">{{ redactor.username }} {% if user == redactor %} (Me){% endif %}</a></td>
-      <td>{{ redactor.first_name }}</td>
-      <td>{{ redactor.last_name }}</td>
-      <td>{{ redactor.years_of_experience }}</td>
-    </tr>
-  {% endfor %}
+    <br>
+    {% if redactor_list %}
+    <table class="table container">
+      <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Experience years</th>
+      </tr>
+    {% for redactor in redactor_list %}
+      <tr>
+        <td>{{ redactor.id }}</td>
+        <td><a style="color: blue" href="{{ redactor.get_absolute_url }}">{{ redactor.username }} {% if user == redactor %} (Me){% endif %}</a></td>
+        <td>{{ redactor.first_name }}</td>
+        <td>{{ redactor.last_name }}</td>
+        <td>{{ redactor.years_of_experience }}</td>
+      </tr>
+    {% endfor %}
 
-  </table>
-  {% else %}
-    <p>There are no redactors in the agency.</p>
-  {% endif %}
+    </table>
+    {% else %}
+      <p class="container">There are no redactors in the agency.</p>
+    {% endif %}
+  </div>
 {% endblock %}
