@@ -12,7 +12,8 @@
         <div class="col-lg-7 d-flex justify-content-center flex-column">
           <div class="card card-body d-flex justify-content-center shadow-lg p-5 blur">
             <h2 class="text-center">Logged out!</h2>
-            <form role="form" id="contact-form" method="post" autocomplete="off">
+            <form role="form" id="contact-form" method="post" autocomplete="off" action="{% url 'newspaper:in-development' %}">
+              {% csrf_token %}
 {#              <div class="card-body">#}
 {#                <div class="row">#}
 {#                  <div class="col-md-6">#}
@@ -47,10 +48,9 @@
 {#                    </div>#}
                   </div>
                   <div class="col-md-12">
-                    <button type="submit" class="btn bg-gradient-dark w-100">Send Message</button>
+                    <button  type="submit" class="btn bg-gradient-dark w-100">Send Message</button>
                   </div>
                 </div>
-              </div>
             </form>
           </div>
         </div>
