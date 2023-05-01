@@ -53,7 +53,7 @@ class NewspaperListView(LoginRequiredMixin, generic.ListView):
         return context
 
     def get_queryset(self):
-        queryset = Newspaper.objects.all().select_related("topic")
+        queryset = Newspaper.objects.select_related("topic")
 
         form = NewspaperSearchForm(self.request.GET)
 
@@ -110,7 +110,7 @@ class RedactorListView(LoginRequiredMixin, generic.ListView):
 
 class RedactorDetailView(LoginRequiredMixin, generic.DetailView):
     model = Redactor
-    queryset = Redactor.objects.all().prefetch_related("newspapers__publisher")
+    queryset = Redactor.objects.prefetch_related("newspapers__publisher")
 
 
 class RedactorCreateView(LoginRequiredMixin, generic.CreateView):
