@@ -35,6 +35,10 @@ def index(request):
     return render(request, "newspaper/index.html", context=context)
 
 
+def in_development(request):
+    return render(request, "newspaper/in_development.html")
+
+
 class NewspaperListView(LoginRequiredMixin, generic.ListView):
     model = Newspaper
     paginate_by = 5

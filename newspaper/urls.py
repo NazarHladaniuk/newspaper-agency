@@ -17,10 +17,12 @@ from newspaper.views import (
     RedactorUpdateView,
     RedactorDeleteView,
     toggle_assign_to_newspapers,
+    in_development,
 )
 
 urlpatterns = [
     path("", index, name="index"),
+    path("in-development/", in_development, name="in-development"),
     path("newspapers/", NewspaperListView.as_view(), name="newspaper-list"),
     path("redactors/", RedactorListView.as_view(), name="redactor-list"),
     path("topics/", TopicListView.as_view(), name="topic-list"),
