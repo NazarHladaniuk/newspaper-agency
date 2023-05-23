@@ -1,0 +1,36 @@
+{% extends "base-presentation.html" %}
+
+{% block content %}
+  <div class="container py-2">
+    <h1>
+      Username: {{ redactor.username }}
+      <a href="{% url 'newspaper:redactor-delete' pk=redactor.id %}" class="btn btn-danger link-to-page">
+        Delete
+      </a>
+
+      <a href="{% url 'newspaper:redactor-update' pk=redactor.id %}" class="btn btn-info link-to-page">
+        Update info
+      </a>
+    </h1>
+
+    <p><strong>First name:</strong> {{ redactor.first_name }}</p>
+    <p><strong>Last name:</strong> {{ redactor.last_name }}</p>
+    <p><strong>Email:</strong> {{ redactor.email }}</p>
+    <p><strong>Years of experience:</strong> {{ redactor.years_of_experience }}</p>
+    <p><strong>Is staff:</strong> {{ redactor.is_staff }}</p>
+
+    <div class="ml-3">
+      <h3>News</h3>
+
+      {% for news in redactor.newspapers.all %}
+          <hr>
+          <p><strong>Title:</strong> {{ news.title }}</p>
+          <p><strong>Topic:</strong> {{ news.topic.name }}</p>
+          <p class="text-muted"><strong>Id:</strong> {{news.id}}</p>
+
+      {% empty %}
+        <p>No news!</p>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
